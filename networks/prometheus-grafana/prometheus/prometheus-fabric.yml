@@ -1,17 +1,26 @@
 global:
   scrape_interval: 1s
   external_labels:
-    monitor: 'devopsage-monitor'
+    monitor: "devopsage-monitor"
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: "prometheus"
 
     # Retain labels, as within PushGateway use
     honor_labels: true
 
     static_configs:
-    - targets: ['prometheus:9090', 'pushGateway:9091','peer0.org1.example.com:9443', 'peer0.org2.example.com:9443']
+      - targets:
+          [
+            "prometheus:9090",
+            "pushGateway:9091",
+            "peer0.org1.example.com:9443",
+            "peer0.org2.example.com:9443",
+            "orderer0.example.com:9443",
+            "orderer1.example.com:9443",
+            "orderer2.example.com:9443",
+          ]
   - job_name: cadvisor
     scrape_interval: 5s
     static_configs:
-    - targets: ['cadvisor:8080']
+      - targets: ["cadvisor:8080"]
