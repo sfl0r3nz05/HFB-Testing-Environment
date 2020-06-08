@@ -123,6 +123,8 @@ services:
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=prometheus-grafana_default
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.org1.example.com:5984
       - CORE_OPERATIONS_LISTENADDRESS=peer0.org1.example.com:9443
       - CORE_METRICS_PROVIDER=prometheus
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
@@ -135,6 +137,15 @@ services:
     depends_on:
       - orderer0.example.com
       - orderer1.example.com
+      - couchdb.org1.example.com
+
+  couchdb.org1.example.com:
+    container_name: couchdb.org1.example.com
+    image: hyperledger/fabric-couchdb:latest
+    ports:
+      - 5984:5984
+    environment:
+      DB_URL: http://localhost:5984/member_db
 
   peer0.org2.example.com:
     container_name: peer0.org2.example.com
@@ -158,6 +169,8 @@ services:
       - CORE_PEER_TLS_CERT_FILE=/etc/hyperledger/msp/peer/tls/server.crt
       - CORE_PEER_TLS_ROOTCERT_FILE=/etc/hyperledger/msp/peer/tls/ca.crt
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=prometheus-grafana_default
+      - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
+      - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb.peer0.org2.example.com:5984
       - CORE_OPERATIONS_LISTENADDRESS=peer0.org2.example.com:9443
       - CORE_METRICS_PROVIDER=prometheus
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
@@ -170,6 +183,15 @@ services:
     depends_on:
       - orderer0.example.com
       - orderer1.example.com
+      - couchdb.org2.example.com
+
+  couchdb.org2.example.com:
+    container_name: couchdb.org2.example.com
+    image: hyperledger/fabric-couchdb:latest
+    ports:
+      - 6984:5984
+    environment:
+      DB_URL: http://localhost:5984/member_db
 
   zookeeper0:
     container_name: zookeeper0

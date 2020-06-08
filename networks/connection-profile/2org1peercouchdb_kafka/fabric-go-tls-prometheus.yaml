@@ -7,14 +7,14 @@ caliper:
   command:
     start: export FABRIC_VERSION=2.0.0;export FABRIC_CA_VERSION=1.4.4;docker-compose -f networks/prometheus-grafana/docker-compose-fabric.yaml up -d;sleep 3s;docker-compose -f networks/2org1peercouchdb_kafka/docker-compose-tls-prometheus.yaml up -d;sleep 3s
     end: sleep 3s
-    #end: docker-compose -f networks/prometheus-grafana/docker-compose-fabric.yaml down;docker-compose -f networks/2org1peergoleveldb_raft/docker-compose-tls-prometheus.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
+    #end: docker-compose -f networks/prometheus-grafana/docker-compose-fabric.yaml down;docker-compose -f networks/2org1peercouchdb_raft/docker-compose-tls-prometheus.yaml down;(test -z \"$(docker ps -aq)\") || docker rm $(docker ps -aq);(test -z \"$(docker images dev* -q)\") || docker rmi $(docker images dev* -q);rm -rf /tmp/hfc-*
 
 info:
   Version: 2.1.0
   Size: 2 Orgs with 1 Peer
   Orderer: Kafka
   Distribution: Single Host
-  StateDB: GoLevelDB
+  StateDB: CouchDB
 
 clients:
   client0.org1.example.com:
