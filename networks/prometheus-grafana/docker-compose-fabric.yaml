@@ -1,38 +1,52 @@
-version: '3'
+version: "3"
 
 volumes:
-    prometheus_data: {}
-    grafana_storage: {}
+  prometheus_data: {}
+  grafana_storage: {}
 
 services:
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:latest
     container_name: prometheus
     volumes:
       - ./prometheus/prometheus-fabric.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--storage.tsdb.path=/prometheus'
-      - '--web.console.libraries=/usr/share/prometheus/console_libraries'
-      - '--web.console.templates=/usr/share/prometheus/consoles'
-    ports:
-      - "9090:9090"
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      - "--storage.tsdb.retention.time=200h"
+      - "--web.enable-lifecycle"
+    expose:
+      - 9090
 
-  pushGateway:
-    image: prom/pushgateway
-    container_name: pushGateway
-    ports:
-      - "9091:9091"
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: alertmanager
+    volumes:
+      - ./alertmanager:/etc/alertmanager
+    command:
+      - "--config.file=/etc/alertmanager/config.yml"
+      - "--storage.path=/alertmanager"
+    restart: unless-stopped
+    expose:
+      - 9093
+
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: pushgateway
+    expose:
+      - 9091
 
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana:latest
     container_name: grafana
     user: "104"
     depends_on:
       - prometheus
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
     volumes:
       - grafana_storage:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
@@ -41,10 +55,11 @@ services:
     restart: always
 
   cadvisor:
-    image: google/cadvisor:v0.27.4
+    image: google/cadvisor:latest
     privileged: true
     container_name: cadvisor
     volumes:
+      - /:/rootfs:ro
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
@@ -52,3 +67,34 @@ services:
     ports:
       - 8080:8080
     restart: always
+
+  nodeexporter:
+    image: prom/node-exporter:latest
+    container_name: nodeexporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)"
+    restart: unless-stopped
+    ports:
+      - "9100:9100"
+
+  caddy:
+    image: stefanprodan/caddy:latest
+    container_name: caddy
+    ports:
+      - "3000:3000"
+      - "9090:9090"
+      - "9093:9093"
+      - "9091:9091"
+    volumes:
+      - ./caddy:/etc/caddy
+    environment:
+      - ADMIN_USER=${ADMIN_USER:-admin}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
+    restart: unless-stopped

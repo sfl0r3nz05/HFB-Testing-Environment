@@ -5,22 +5,41 @@ global:
 
 scrape_configs:
   - job_name: "prometheus"
+    scrape_interval: 10s
+    static_configs:
+      - targets: ["localhost:9090"]
 
+  - job_name: "hyperledger_metrics"
     # Retain labels, as within PushGateway use
-    honor_labels: true
-
     static_configs:
       - targets:
           [
-            "prometheus:9090",
-            "pushGateway:9091",
             "peer0.org1.example.com:9443",
             "peer0.org2.example.com:9443",
             "orderer0.example.com:9443",
             "orderer1.example.com:9443",
             "orderer2.example.com:9443",
           ]
+
   - job_name: cadvisor
     scrape_interval: 5s
     static_configs:
-      - targets: ["cadvisor:8080"]
+      - targets:
+          - "cadvisor:8080"
+
+  - job_name: "nodeexporter"
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["nodeexporter:9100"]
+
+  - job_name: "pushgateway"
+    scrape_interval: 10s
+    honor_labels: true
+    static_configs:
+      - targets: ["pushgateway:9091"]
+
+alerting:
+  alertmanagers:
+    - scheme: http
+      static_configs:
+        - targets: ["alertmanager:9093"]
