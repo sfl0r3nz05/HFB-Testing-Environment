@@ -61,8 +61,8 @@ func (cc *ChainCode) AddAsset(APIstub shim.ChaincodeStubInterface, args []string
 	}
 
 	rfid := args[0]
-	hash_ := args[1]
-	r := m.Resource{Timestamp: time.Now().Unix(), hashToString: hash_}
+	hash := args[1]
+	r := m.Resource{Timestamp: time.Now().Unix(), HASH: hash}
 
 	// put k-v to DB
 	err := APIstub.PutState(rfid, r.ToBytes())
