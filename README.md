@@ -71,4 +71,4 @@
 
 > Caliper generates a report hosted in project root
 > |-|
-> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/Caliper-GoLevelDB-Raft.PNG)
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/Caliper-GoLevelDB-Raft.PNG)
