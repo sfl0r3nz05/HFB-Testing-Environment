@@ -3,9 +3,7 @@ package tools
 import "encoding/json"
 
 // Define the resource structure
-type Resource struct {
-	hashToString string `json:"hash_"`
-}
+hashToString string `json:"hash_"`
 
 func (r Resource) ToBytes() []byte {
 	b, err := json.Marshal(r)
