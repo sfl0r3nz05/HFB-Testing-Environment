@@ -17,7 +17,7 @@
 
 - Run a network of 2CA, 2ORG, 1PEER/ORG, 3ORDERER, RAFT CONSENSUS, GOLEVELDB STATEDB
 
-5. npx caliper launch master --caliper-workspace . --caliper-benchconfig benchmarks/fabcar/config.yaml --caliper-networkconfig networks/connection-profile/2org1peergoleveldb_raft/fabric-go-tls.yaml
+5. npx caliper launch master --caliper-workspace . --caliper-benchconfig benchmarks/fabcar/config.yaml --caliper-networkconfig networks/connection-profile/2org1peergoleveldb_raft/fabric-go-tls-prometheus.yaml
 
 - Run a network of 2CA, 2ORG, 1PEER/ORG, 3ORDERER, RAFT CONSENSUS, COUCHDB STATEDB
 
@@ -25,7 +25,7 @@
 
 - Run a network of CA, 2ORG, 1PEER/ORG, 2ORDERER, 3 ZOOKEEPEER, 4 KAFKA BROKERS, CONSENSUS KAFKA, GOLEVELDB STATEDB
 
-7. npx caliper launch master --caliper-workspace . --caliper-benchconfig benchmarks/fabcar/config.yaml --caliper-networkconfig networks/connection-profile/2org1peergoleveldb_kafka/fabric-go-tls-prometheus.yaml
+7. npx caliper launch master --caliper-workspace . --caliper-benchconfig benchmarks/fabcar/config.yaml --caliper-networkconfig networks/connection-profile/org1peergoleveldb_kafka/fabric-go-tls-prometheus.yaml
 
 - Run a network of 2CA, 2ORG, 1PEER/ORG, 2ORDERER, 3 ZOOKEEPEER, 4 KAFKA BROKERS, CONSENSUS KAFKA, COUCHDB STATEDB
 
