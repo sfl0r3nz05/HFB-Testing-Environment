@@ -134,7 +134,7 @@
             <ul>
                 <h3>&nbspBenchmark results</h3>
                 <li><a href="#benchmarksummary">Summary</a></li>
-                    <li><a href="#AddAsset.">AddAsset.</a></li>
+                    <li><a href="#addAsset.">addAsset.</a></li>
             </ul>
             <ul>
                 <h3>&nbspSystem under test</h3>
@@ -157,12 +157,12 @@
                     </tr>
 
                     <tr>
-                         <td>AddAsset.</td> <td>320</td> <td>17</td> <td>11.5</td> <td>1.61</td> <td>0.94</td> <td>1.31</td> <td>10.5</td>
+                         <td>addAsset.</td> <td>0</td> <td>30</td> <td>1.2</td> <td>0.00</td> <td>100000.00</td> <td>NaN</td> <td>0.0</td>
                     </tr>
                 </table>
             </div>
-            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="AddAsset.">
-                <h2>Benchmark round: AddAsset.</h2>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="addAsset.">
+                <h2>Benchmark round: addAsset.</h2>
                 <p></p>
                 <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">txDuration: 30
 rateControl:
@@ -170,16 +170,16 @@ rateControl:
   opts:
     unfinished_per_client: 5
 </pre>
-                        <h3>Performance metrics for AddAsset.</h3>
+                        <h3>Performance metrics for addAsset.</h3>
                             <table style="min-width: 100%;">
                                 <tr>
                                      <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
                                 </tr>
                                 <tr>
-                                     <td>AddAsset.</td> <td>320</td> <td>17</td> <td>11.5</td> <td>1.61</td> <td>0.94</td> <td>1.31</td> <td>10.5</td>
+                                     <td>addAsset.</td> <td>0</td> <td>30</td> <td>1.2</td> <td>0.00</td> <td>100000.00</td> <td>NaN</td> <td>0.0</td>
                                 </tr>
                             </table>
-                        <h3>Resource utilization for AddAsset.</h3>
+                        <h3>Resource utilization for addAsset.</h3>
             </div>
 
             <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;">
@@ -189,7 +189,7 @@ rateControl:
   type: local
   number: 5
 rounds:
-  - label: AddAsset.
+  - label: addAsset.
     txDuration: 30
     rateControl:
       type: fixed-backlog
@@ -197,8 +197,8 @@ rounds:
         unfinished_per_client: 5
     arguments:
       assets: 1000
-    callback: benchmarks&#x2F;registerAsset&#x2F;AddAsset.js
-  - label: GetAsset.
+    callback: benchmarks&#x2F;registerAsset&#x2F;addAsset.js
+  - label: getAsset.
     txDuration: 30
     rateControl:
       type: fixed-backlog
@@ -208,7 +208,7 @@ rounds:
       assets: 1000
       startKey: &#39;1&#39;
       endKey: &#39;50&#39;
-    callback: benchmarks&#x2F;registerAsset&#x2F;GetAsset.js
+    callback: benchmarks&#x2F;registerAsset&#x2F;getAsset.js
 </pre>
                 <h3>SUT</h3>
                 <pre id="sutdetails">not provided</pre>

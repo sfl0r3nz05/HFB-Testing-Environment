@@ -27,15 +27,15 @@ let hashs = [
 
 let txIndex = 0;
 
-module.exports.AddAsset = async function (bc, contx, args, rfid, hash) {
+module.exports.addAsset = async function (bc, contx, args, rfid, hash_) {
   while (txIndex < args.assets) {
     txIndex++;
     rfid = rfids[Math.floor(Math.random() * rfids.length)];
-    hash = hashs[Math.floor(Math.random() * hashs.length)];
+    hash_ = hashs[Math.floor(Math.random() * hashs.length)];
 
     let myArgs = {
-      chaincodeFunction: "AddAsset",
-      chaincodeArguments: [rfid, hash],
+      chaincodeFunction: "addAsset",
+      chaincodeArguments: [rfid, hash_],
     };
 
     await bc.invokeSmartContract(contx, "registerAsset", "v1", myArgs, 30);

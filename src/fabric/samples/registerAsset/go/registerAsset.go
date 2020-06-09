@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/hyperledger/fabric-chaincode-go/shim"
 	sc "github.com/hyperledger/fabric-protos-go/peer"
-	tools "github.com/sfl0r3nz05/HFB-Testing-Environment/src/fabric/utils/go/tools"
+	"github.com/sfl0r3nz05/HFB-Testing-Environment/src/fabric/utils/go/m"
 )
 
 type SmartContract struct {
@@ -28,9 +29,9 @@ func (cc *SmartContract) Invoke(APIstub shim.ChaincodeStubInterface) sc.Response
 	// Retrieve the requested Smart Contract function and arguments
 	function, args := APIstub.GetFunctionAndParameters()
 	// Route to the appropriate handler function to interact with the ledger appropriately
-	if function == "addAsset" {
+	if function == "AddAsset" {
 		return cc.AddAsset(APIstub, args)
-	} else if function == "getAsset" {
+	} else if function == "GetAsset" {
 		return cc.GetAsset(APIstub, args)
 	}
 
@@ -45,7 +46,7 @@ func (cc *SmartContract) AddAsset(APIstub shim.ChaincodeStubInterface, args []st
 
 	rfid := args[0]
 	hash_ := args[1]
-	r := tools.Resource{hashToString: hash_}
+	r := m.Resource{Timestamp: time.Now().Unix(), hashToString: hash_}
 
 	// put k-v to DB
 	err := APIstub.PutState(rfid, r.ToBytes())

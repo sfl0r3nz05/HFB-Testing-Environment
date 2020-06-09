@@ -4,7 +4,7 @@ test:
     type: local
     number: 5
   rounds:
-    - label: AddAsset.
+    - label: addAsset.
       txDuration: 30
       rateControl:
         type: fixed-backlog
@@ -12,8 +12,8 @@ test:
           unfinished_per_client: 5
       arguments:
         assets: 1000
-      callback: benchmarks/registerAsset/AddAsset.js
-    - label: GetAsset.
+      callback: benchmarks/registerAsset/addAsset.js
+    - label: getAsset.
       txDuration: 30
       rateControl:
         type: fixed-backlog
@@ -23,7 +23,7 @@ test:
         assets: 1000
         startKey: "1"
         endKey: "50"
-      callback: benchmarks/registerAsset/GetAsset.js
+      callback: benchmarks/registerAsset/getAsset.js
 monitor:
   type:
     - docker
