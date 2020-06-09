@@ -1,14 +1,21 @@
-# 2Org1PeerGoleveldbRaft
+# HFB Testing Environment
 
 - benchmarks folder
   Contains the configuration files in order to test the smart contract.
+
 - network folder
   Contains:
   network options to deploy in docker-compose files
   crypto configuration files (certificates, channel, genesis block, configtx.yaml, crypto-config.yaml)
   connection-profile to enable caliper to recognize the network
   prometheus/grafana configuration
-- src folder contains chaincode source code
+
+- src folder contains chaincode source code before compiled via:
+  1. go mod init \_\_
+  2. go install
+  3. go mod vendor
+
+# How deploy a benchmark
 
 1. npm i @hyperledger/caliper-cli
 2. npm init -y
@@ -33,3 +40,35 @@
 
 9. docker rm -f \$(docker ps -a -q)
 10. docker volume rm \$(docker volume ls -q)
+
+# Network include a Prometheus configuration
+
+> PROMETHEUS (ip:9090)
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/prometheus.PNG)
+
+> GRAFANA CONTAINERS 1 (ip:3000)
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/grafana-containers.PNG)
+
+> GRAFANA CONTAINERS 2 (ip:3000)
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/grafana-containers2.PNG)
+
+> GRAFANA HOST (ip:3000)
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/grafana-host.PNG)
+
+> HFB METRICS RAFT (INSIDE GRAFANA)
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/HFB-metrics-raft.PNG)
+
+> HFB METRICS LEDGER (INSIDE GRAFANA)
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/img/HFB-metrics-ledger.PNG)
+
+# Caliper report
+
+> Caliper generates a report
+> |-|
+> ![alt text](https://github.com/sfl0r3nz05/HFB-Testing-Environment/blob/master/report.html)
