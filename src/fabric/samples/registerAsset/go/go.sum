@@ -18,7 +18,6 @@ github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORN
 github.com/kr/pty v1.1.1/go.mod h1:pFQYn66WHrOpPYNljwOMqo10TkYh1fy3cYio2l3bCsQ=
 github.com/kr/text v0.1.0/go.mod h1:4Jbv+DJW3UT/LiOwJeYQe1efqtUx/iVham/4vfdArNI=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/sfl0r3nz05/HFB-Testing-Environment v0.0.0-20200609094734-21c5136d7049 h1:aNQGkb5EoxxFRR4QE3Ao1taaRcNF0xAYIvfhQe55wCw=
 github.com/sfl0r3nz05/HFB-Testing-Environment v0.0.0-20200609132705-00478d51c43b h1:MEqpaqiQTe/pO2mScA+VWJ8AhAQlcrHOY0jb74bee2w=
 github.com/sfl0r3nz05/HFB-Testing-Environment v0.0.0-20200609132705-00478d51c43b/go.mod h1:wXc+q5F/lhsQOOCtg809JxvYP7s5gIn5tlTDPZe2q6k=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

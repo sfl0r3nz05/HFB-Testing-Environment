@@ -4,7 +4,7 @@ import "encoding/json"
 
 // Define the resource structure
 type Resource struct {
-	hashToString       string `json:"hash"`
+	hashToString string `json:"hash_"`
 }
 
 func (r Resource) ToBytes() []byte {

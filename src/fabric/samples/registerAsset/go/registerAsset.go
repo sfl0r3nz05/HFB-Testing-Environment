@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/hyperledger/fabric-chaincode-go/shim"
 	sc "github.com/hyperledger/fabric-protos-go/peer"
-	"github.com/sfl0r3nz05/HFB-Testing-Environment/src/fabric/utils/go/tools"
+	tools "github.com/sfl0r3nz05/HFB-Testing-Environment/src/fabric/utils/go/tools"
 )
 
 type SmartContract struct {
@@ -49,7 +48,7 @@ func (cc *SmartContract) AddAsset(APIstub shim.ChaincodeStubInterface, args []st
 	r := tools.Resource{hashToString: hash_}
 
 	// put k-v to DB
-	err := APIstub.PutState(rfid, hash_.ToBytes())
+	err := APIstub.PutState(rfid, r.ToBytes())
 	if err != nil {
 		return shim.Error(err.Error())
 	}
@@ -68,7 +67,7 @@ func (cc *SmartContract) GetAsset(APIstub shim.ChaincodeStubInterface, args []st
 // The main function is only relevant in unit test mode. Only included here for completeness.
 func main() {
 	// Create a new Smart Contract
-	err := shim.Start(NewDeviceContract())
+	err := shim.Start(new(SmartContract))
 	if err != nil {
 		fmt.Printf("Error creating new Smart Contract: %s", err)
 	}
