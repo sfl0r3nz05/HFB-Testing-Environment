@@ -6,6 +6,7 @@ import (
 
 	"github.com/hyperledger/fabric-chaincode-go/shim"
 	sc "github.com/hyperledger/fabric-protos-go/peer"
+	"github.com/sfl0r3nz05/HFB-Testing-Environment/src/utils/go/m"
 )
 
 type DeviceContract interface {
