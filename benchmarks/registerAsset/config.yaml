@@ -1,0 +1,33 @@
+---
+test:
+  workers:
+    type: local
+    number: 5
+  rounds:
+    - label: AddAsset.
+      txDuration: 30
+      rateControl:
+        type: fixed-backlog
+        opts:
+          unfinished_per_client: 5
+      arguments:
+        assets: 1000
+      callback: benchmarks/registerAsset/AddAsset.js
+    - label: GetAsset.
+      txDuration: 30
+      rateControl:
+        type: fixed-backlog
+        opts:
+          unfinished_per_client: 5
+      arguments:
+        assets: 1000
+        startKey: "1"
+        endKey: "50"
+      callback: benchmarks/registerAsset/GetAsset.js
+monitor:
+  type:
+    - docker
+  docker:
+    name:
+      - all
+  interval: 1

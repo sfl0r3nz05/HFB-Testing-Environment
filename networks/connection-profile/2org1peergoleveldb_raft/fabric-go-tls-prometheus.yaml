@@ -57,10 +57,10 @@ channels:
         eventSource: true
 
     chaincodes:
-      - id: fabcar
+      - id: registerAsset
         version: v0
         language: golang
-        path: fabric/samples/fabcar/go
+        path: fabric/samples/registerAsset/go
 
 organizations:
   Org1:
