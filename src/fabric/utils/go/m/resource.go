@@ -4,8 +4,8 @@ import "encoding/json"
 
 // Define the resource structure
 type Resource struct {
-	Timestamp int64  `json:"timestamp"`
-	Hash  string `json:"hash"`
+	Timestamp int64 `json:"timestamp"`
+	Hash  string 	`json:"hash"`
 }
 
 func (r Resource) ToBytes() []byte {
